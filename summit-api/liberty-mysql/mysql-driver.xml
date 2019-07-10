@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="OpenLiberty Java EE 8 Server">
+
+    <jdbcDriver id="mysql-driver"
+                javax.sql.XADataSource="com.mysql.cj.jdbc.MysqlXADataSource"
+                javax.sql.ConnectionPoolDataSource="com.mysql.cj.jdbc.MysqlConnectionPoolDataSource"
+                libraryRef="mysql-library"/>
+
+    <library id="mysql-library">
+        <fileset id="mysqlFileSet" dir="/opt/wlp/lib"
+                 includes="mysql-connector-java-8.0.16.jar"/>
+    </library>
+
+</server>

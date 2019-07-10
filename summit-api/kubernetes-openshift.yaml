@@ -1,0 +1,37 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: summit-api
+  labels:
+    app: summit-api
+spec:
+  selector:
+    app: summit-api
+  ports:
+    - port: 9080
+      name: http
+  type: NodePort
+---
+
+kind: Deployment
+apiVersion: apps/v1beta1
+metadata:
+  name: summit-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      annotations: 
+        sidecar.istio.io/inject: "true"    
+      labels:
+        app: summit-api
+        version: v1
+    spec:
+      containers:
+      - name: summit-api
+        image: ykoyfman/summit-api:1
+        ports:
+        - containerPort: 9080
+        imagePullPolicy: Always
+      restartPolicy: Always
+---
