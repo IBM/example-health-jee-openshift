@@ -1,0 +1,235 @@
+   13  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}'
+   15  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}'
+   19  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}'
+   22  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}'
+   32  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}'
+   33  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}'
+   44  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}'
+   45  echo $(curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}')
+   74  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}'
+   97  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}'
+   98  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}'
+  114  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}'
+  192  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  217  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  238  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  248  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  291  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  311  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  325  #curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  326  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'count: 2'  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  327  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'count: 2'  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  328  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  331  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'count: 10'  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  334  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'count: 10'  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  337  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'count: 10'  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  338  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'count: 1'  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  341  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'count: 1'  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  342  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'count: 1'  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  345  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'count: 1'  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  349  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'count: 1'  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  350  curl 169.55.65.202:31380/instrument-craft-shop/resources/instruments -i -XPOST -H 'count: 1'  -H 'Content-Type: application/json' -d '{"type":"GUITAR", "price":200}' && date
+  384  $ curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.1.0 sh -
+  387   curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.1.0 sh -
+  491  curl -L https://git.io/getLatestIstio
+  492  curl -L https://git.io/getLatestIstio | sh -
+  496  curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.0.6 sh -
+  696  curl 172.17.0.2/test/getAll
+  697  curl 172.17.0.2:9080/test/getAll
+  698  curl 172.17.0.2:9080/config-example/test/getAll
+  699  curl 172.17.0.2:9080/config-example/test
+  700  curl 172.17.0.2:9080/config-example/test/getAll
+  701  curl 172.17.0.2:9080/test/getAll
+  702  curl 172.17.0.2:9080/config-example/getAll
+  703  curl 172.17.0.2:9080/config-example
+  704  curl 172.17.0.2:9080/config-example
+  705  curl -v 172.17.0.2:9080/config-example
+  706  curl -v -XPOST 172.17.0.2:9080/config-example
+  709  curl -v -XPOST 172.17.0.2:9080/config-example -d '{message}'
+  710  curl -v -XPOST 172.17.0.2:9080/config-example/test -d '{message}'
+  711  curl -v -XPOST 172.17.0.2:9080/config-example/test/store -d '{message}'
+  712  curl -v -XPOST 172.17.0.2:9080/api/config-example/test/store -d '{message}'
+  713  curl -v -XPOST 172.17.0.2:9080/config-example/api/test/store -d '{message}'
+  714  curl -v -XPOST 172.17.0.2:9080/config-example/test/store -d '{message}'
+  715  curl -v -XPOST 172.17.0.2:9080/config-example/test -d '{message}'
+  731  curl -v  http://172.17.0.2:9080/config-example/v1/advocates
+  732  curl -v  http://172.17.0.2:9080/v1/advocates
+  733  curl -v  http://172.17.0.2:9080/config-example/v1/advocates
+  734  curl -v  http://172.17.0.2:9080/v1/advocates
+  739  curl -v  http://172.17.0.2:9080/v1/advocates
+  740  curl -v  http://172.17.0.2:9080/config-example/v1/advocates
+  741  curl -v  http://172.17.0.2:9080/openapi/ui
+  742  curl -v  http://172.17.0.2:9080/config-example/v1/advocates
+  743  curl -v  http://172.17.0.2:9080/config-example/v1/
+  744  curl -v  http://172.17.0.2:9080/config-example
+  751  curl -v  http://172.17.0.2:9080/config-example
+  752  curl -v  http://172.17.0.2:9080/config-example/v1/advocates
+  778  curl -v  http://172.17.0.2:9080/config-example/v1/advocates
+  779  curl -v  http://172.17.0.2:9080/openapi/ui
+  790  curl -v  http://172.17.0.2:9080/openapi/ui
+  791  curl -v  http://172.17.0.2:9080/openapi
+  792  curl -v  http://172.17.0.2:9080/resources/v1/advocates
+  793  curl -v  http://172.17.0.2:9080/resources/getAll
+  799  curl -v  http://172.17.0.2:9080/openapi
+  800  curl -v -XPOST 172.17.0.2:9080/resources/v1//store -d '{"PERSIST ME"}'
+  801  curl -v -XPOST 172.17.0.2:9080/resources/v1/store -d '{"PERSIST ME"}'
+  802  curl -v  172.17.0.2:9080/resources/v1/getAll
+  803  curl -v  172.17.0.2:9080/resources/v1/getAll
+  813  curl -v  172.17.0.2:9080/resources/v1/getAll
+  818  curl -v  172.17.0.2:9080/resources/v1/getAll
+  819  curl -v -XPOST 172.17.0.2:9080/resources/v1/testAddPatient
+  820  curl -v -XPOST 172.17.0.2:9080/resources/v1/testAddPatient -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Floyd420","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'
+  821  curl -v -H 'Content-Type: application/json' -XPOST 172.17.0.2:9080/resources/v1/testAddPatient -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Floyd420","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'
+  822  curl -v -H 'Content-Type: application/json' -XPOST 172.17.0.2:9080/resources/v1/testAddPatient -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Floyd420","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'
+  823  curl -v -H 'Content-Type: application/json' -XPOST -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Floyd420","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'172.17.0.2:9080/resources/v1/testAddPatient
+  824  curl -v -H 'Content-Type: application/json' -XPOST -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Floyd420","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'  http://172.17.0.2:9080/resources/v1/testAddPatient
+  825  curl -v -H 'Content-Type: application/json' -XPOST -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Floyd420","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'  http://172.17.0.2:9080/resources/v1/testAddPatient
+  826  curl -v -H 'Content-Type: application/json' -XPOST -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Floyd420","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'  http://172.17.0.2:9080/resources/v1/testAddPatient
+  827  curl -v -H 'Content-Type: application/json' -XPOST -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Floyd420","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'  http://172.17.0.2:9080/resources/v1/testAddPatient
+  828  curl -v -H 'Content-Type: application/json' -XPOST -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Floyd420","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'  http://172.17.0.2:9080/resources/v1/testAddPatient
+  829  curl -v -H 'Content-Type: application/json' -XPOST -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Floyd420","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'  http://172.17.0.2:9080/resources/v1/testAddPatient
+  830  curl -v -H 'Content-Type: application/json' -XPOST -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Yan","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'  http://172.17.0.2:9080/resources/v1/testAddPatient
+  832  curl -v -H 'Content-Type: application/json' -XPOST -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Yan","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'  http://172.17.0.2:9080/resources/v1/testAddPatient
+  833  curl -v -H 'Content-Type: application/json' -XPOST -d '{"Id":"20c47f5f-a24d-4efe-9eb9-5acf421d1958","BIRTHDATE":"1977-12-12","DEATHDATE":"","SSN":"999-44-8397","DRIVERS":"S99965159","PASSPORT":"X50372231X","PREFIX":"Mr.","FIRST":"Yan","LAST":"Jenkins714","SUFFIX":"","MAIDEN":"","MARITAL":"M","RACE":"white","ETHNICITY":"irish","GENDER":"M","BIRTHPLACE":"San Jose  California  US","ADDRESS":"1045 Dibbert Well","CITY":"Fresno","STATE":"California","ZIP":"93611"}'  http://172.17.0.2:9080/resources/v1/testAddPatient
+  834  curl -v -H 'Content-Type: application/json' -XPOST 
+  836  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata-small.json'   http://172.17.0.2:9080/resources/v1/generate
+  837  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata-small.json'   http://172.17.0.2:9080/resources/v1/generate
+  838  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata-small.json'   http://172.17.0.2:9080/resources/v1/generate
+  839  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata-small.json'   http://172.17.0.2:9080/resources/v1/generate
+  840  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata-small.json'   http://172.17.0.2:9080/resources/v1/generate
+  841  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata-small.json'   http://172.17.0.2:9080/resources/v1/generate
+  842  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata-small.json'   http://172.17.0.2:9080/resources/v1/generate
+  843  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata.json'   http://172.17.0.2:9080/resources/v1/generate
+  844  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata.json'   http://172.17.0.2:9080/resources/v1/generate
+  845  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata-small.json'   http://172.17.0.2:9080/resources/v1/generate
+  846  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata-small.json'   http://172.17.0.2:9080/resources/v1/generate
+  847  curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata-small.json'   http://172.17.0.2:9080/resources/v1/generate
+  848  time curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata.json'   http://172.17.0.2:9080/resources/v1/generate
+  849  time curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata.json'   http://172.17.0.2:9080/resources/v1/generate
+  850  time curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata.json'   http://172.17.0.2:9080/resources/v1/generate
+  851  time curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata.json'   http://172.17.0.2:9080/resources/v1/generate
+  852  time curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata.json'   http://172.17.0.2:9080/resources/v1/generate
+  854  time curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata.json'   http://172.17.0.2:9080/resources/v1/generate
+  855  time curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata.json'   http://172.17.0.2:9080/resources/v1/generate
+  856  time curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata.json'   http://172.17.0.2:9080/resources/v1/generate
+  857  time curl -v -H 'Content-Type: application/json' -XPOST -d '@/home/yan/src/adv/summit/summit/summit-api/sql/Summit/src/apidata.json'   http://172.17.0.2:9080/resources/v1/generate
+  881  curl -v -H 'Content-Type: application/json' -XGET  http://172.17.0.2:9080/resources/v1/getInfo/prescription/150a1d01-ee62-4128-9839-9506e0ae6225
+  882  curl -v -H 'Content-Type: application/json' -XGET  http://172.17.0.3:9080/resources/v1/getInfo/prescription/150a1d01-ee62-4128-9839-9506e0ae6225
+  883  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.3:9080/resources/v1/getInfo/prescription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  884  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.3:9080/v1/getInfo/prescription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  885  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.3:9080/getInfo/prescription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  886  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.3:9080/v1/getInfo/perscription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  887  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.3:9080/resources/v1/getInfo/perscription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  888  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.3:9080/resources/v1/getInfo/perscription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  889  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/perscription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  890  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/perscription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  891  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  892  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  893  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  894  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription/150a1d01-ee62-4128-9839-9506e0ae6225"
+  895  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription/150a1d01-ee62-4128-9839-9506e0ae6225" | jq
+  896  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225"
+  897  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225"
+  898  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225"
+  899  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225" | jq 
+  900  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225" | jq  | grep -i character
+  901  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225" | jq  | grep -i numeric
+  902  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225" | jq 
+  903  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225" | jq | grep CODE
+  904  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225" | python -mjson.tool
+  905  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225" | python -mjson.tool | grep NUMERIC
+  906  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225" | python -mjson.tool | grep CHARACTER
+  907  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listObs/150a1d01-ee62-4128-9839-9506e0ae6225" | python -mjson.tool | less
+  908  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/v1/login/usr" -d '{UID: foo, PASS: bar}'
+  909  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/v1/login/user" -d '{UID: foo, PASS: bar}'
+  910  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/login/user" -d '{UID: foo, PASS: bar}'
+  911  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/login/user" -d '{"UID": "foo", "PASS": "bar"}'
+  912  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/login/user" -d '{"UID": "foo", "PASS": "bar"}'
+  913  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/login/user" -d '{"UID": "foo", "PASS": "bar"}'
+  914  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/login/user" -d '{"UID": "foo", "PASS": "bar"}'
+  915  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/login/user" -d '{"UID": "foo", "PASS": "bar"}'
+  916  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/login/user" -d '{"UID": "foo", "PASS": "bar"}'
+  917  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/login/user" -d '{"UID": "sethh", "PASS": "sethh"}'
+  918  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/login/user" -d '{"UID": "sethh", "PASS": "sethh"}'
+  919  curl -v -H 'Content-Type: application/json' -XPOST  "http://172.17.0.2:9080/resources/login/user" -d '{"UID": "sethh", "PASS": "sethhf"}'
+  920  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/showAllergies
+  921  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/showAllergies"
+  922  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/showAllergies"
+  923  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/showAllergies"
+  924  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/showAllergies"
+  925  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/showAllergies"
+  926  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/showAllergies"
+  927  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/showAllergies" | jq
+  928  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities"
+  929  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities"
+  931  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities"
+  932  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities"
+  933  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities"
+  934  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities"
+  935  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities"
+  936  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities" | jq
+  937  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities" | jq
+  938  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/listDiseases" 
+  939  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases" 
+  940  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases" 
+  941  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases" 
+  942  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases" 
+  943  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases" 
+  944  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases" 
+  945  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases" 
+  946  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases" 
+  947  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases" 
+  948  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/patients" 
+  949  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/patients"  | jq
+  950  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"
+  951  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"
+  952  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"
+  953  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"
+  954  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"
+  955  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription" | jq
+  956  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"
+  957  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription" | jq
+  958  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription" | jq
+  959  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"
+  960  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"
+  961  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"
+  962  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"| jq
+  963  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities" 
+  964  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities" | jq
+  965  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"
+  966  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription" | jq
+  967  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities" 
+  968  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription" 
+  969  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"  | jq
+  970  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription" 
+  971  curl  -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/prescription"  | jq
+  972  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases" 
+  973  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases"  | jq
+  975  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/patients"  
+  976  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/patients"  
+  977  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/patients"  | jq
+  978  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/patients"  | jq
+  979  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/patients/f4c26536-6cfe-4efa-9d0b-9e76a9e1c37c"  | jq
+  981  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/patients"  | jq
+  982  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/getInfo/patients"  | jq
+  983  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases"  
+  984  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases"  
+  985  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases"  
+  986  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases"  
+  987  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases"   | jq
+  989  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases"   | jq
+  990  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/listDiseases"   
+  992  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/countCities" 
+  993  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/countCities" 
+  994  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/countCities"  | jq
+  995  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/countCities"  | jq | grep POSTCODE
+  996  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/countCities"  | jq 
+  997  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/countCities"  | jq -M | grep POSTCODE
+  998  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/countCities"  | jq -M 
+  999  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/countCities"  | jq -M -r
+ 1000  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/countCities"  | jq -M -r | grep POST
+ 1001  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/countCities"  | jq -M -r > tmp
+ 1004  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/countCities"  | python -mjson.tool
+ 1005  curl -v -H 'Content-Type: application/json' -XGET  "http://172.17.0.2:9080/resources/v1/countCities"  | python -mjson.tool | grep POSTCODE
+ 1051  history | grep curl
+ 1052  history | grep curl > ~/src/adv/summit/summit/summit-api/samples/cli
