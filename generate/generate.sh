@@ -1,17 +1,17 @@
 #!/bin/bash
 population=500
-state=California
-url="http://localhost:3000"
-max=500
-while getopts p:s:u: option
+states=( "Alabama" "Alaska" "Arizona" "Arkansas" "California" "Colorado" "Connecticut" "Delaware" "Florida" "Georgia" "Hawaii" "Idaho" "Illinois" "Indiana" "Iowa" "Kansas" "Kentucky" "Louisiana" "Maine" "Maryland" "Massachusetts" "Michigan" "Minnesota" "Mississippi" "Missouri" "Montana" "Nebraska" "Nevada" "New Hampshire" "New Jersey" "New Mexico" "New York" "North Carolina" "North Dakota" "Ohio" "Oklahoma" "Oregon" "Pennsylvania" "Rhode Island" "South Carolina" "South Dakota" "Tennessee" "Texas" "Utah" "Vermont" "Virginia" "Washington" "West Virginia" "Wisconsin" "Wyoming" )
+url=""
+max=50
+while getopts p:u: option
 	do
 		case "${option}"
 		in
 			p) population=${OPTARG};;
-			s) state=${OPTARG};;
 			u) url=${OPTARG};;
 		esac
 done
+[ -z "$url" ] && echo "Missing required -u flag for API URL"  && exit 1
 git clone https://github.com/synthetichealth/synthea.git
 cd synthea || exit 1
 sed -e 's/^\(exporter.years_of_history =\).*/\1 0/' -e 's/^\(exporter.csv.export =\).*/\1 true/' src/main/resources/synthea.properties > src/main/resources/synthea.properties.new
@@ -20,11 +20,13 @@ seed=1
 for ((n=0;n<$population;n=$n+$max))
 do
 	populationChunk=$(($population - $n))
+	state=$(($RANDOM % 49))
+	currentState=${states[$state]}
 	if test $populationChunk -lt $max; then
-		./run_synthea -s $seed -p "$populationChunk" "$state"
+		./run_synthea -s $seed -p "$populationChunk" "$currentState"
   	else
   		populationChunk=$max
-  		./run_synthea -s $seed -p "$populationChunk" "$state"
+  		./run_synthea -s $seed -p "$populationChunk" "$currentState"
   	fi
   	seed=$(($seed + 1))
   	mv output/csv/allergies.csv ../allergies.csv
@@ -72,6 +74,14 @@ do
 	rm -rf providers.json
 	rm -rf organizations.csv
 	rm -rf organizations.json
+	statusCode=$(curl --write-out %{http_code} --silent --output /dev/null "$url/resources/v1/generate" -H "Content-Type: application/json" -X POST -d "@apidata.json")
+	rm -rf apidata.json
+	if (($statusCode >= 400)); then
+		rm -rf synthea
+		echo "Unable to finish generating $population patients. Error from $url/resources/v1/generate"
+		echo "HTTP status code: $statusCode"
+		exit 1
+	fi
 	cd synthea
 	rm -rf output
 done
