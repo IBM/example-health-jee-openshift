@@ -1,10 +1,13 @@
-FROM openliberty-mysql:1
+FROM openliberty/open-liberty:javaee8-ubi-min
+
+ENV INSTALL_DIR /opt/ol/wlp/
+ENV CONFIG_DIR /opt/ol/wlp/usr/servers/defaultServer/
+
+ADD --chown=default:root https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar  ${INSTALL_DIR}lib/mysql-connector-java-8.0.16.jar
+RUN chmod 644 ${INSTALL_DIR}lib/mysql-connector-java-8.0.16.jar
+COPY liberty-mysql/mysql-driver.xml ${CONFIG_DIR}configDropins/defaults/
 
 COPY liberty/server.xml $CONFIG_DIR
-RUN mkdir -p  /opt/wlp/usr/servers/defaultServer/apps
-RUN chmod 777 /opt/wlp/usr/servers/defaultServer
-RUN chmod 777 /opt/wlp/lib
-RUN chmod 644 /opt/wlp/lib/mysql-connector-java-8.0.16.jar
 
-COPY target/summit-api.war /opt/wlp/usr/servers/defaultServer/apps
+COPY target/summit-api.war /opt/ol/wlp/usr/servers/defaultServer/apps
 EXPOSE 9080
