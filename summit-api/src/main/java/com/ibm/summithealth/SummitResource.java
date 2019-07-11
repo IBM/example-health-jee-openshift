@@ -177,7 +177,7 @@ public class SummitResource {
             // return Response.ok("No prescriptions found.").build();
         }
 
-        String prescriptionBlob = "{\"HCCMAREA\": {" + 
+        String prescriptionBlob = "{\"GETMEDO\": {" + 
         " \"CA_REQUEST_ID\" : \"01IPAT\"," + 
         " \"CA_RETURN_CODE\": " + returnCode + "," + 
         " \"CA_PATIENT_ID\": \"" + patId + "\"," + 

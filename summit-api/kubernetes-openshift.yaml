@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: summit-api
-        image: ykoyfman/summit-api:1
+        image: ykoyfman/ol-ubi-summit:latest
         ports:
         - containerPort: 9080
         imagePullPolicy: Always
