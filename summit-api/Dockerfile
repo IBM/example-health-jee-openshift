@@ -8,6 +8,7 @@ RUN chmod 644 ${INSTALL_DIR}lib/mysql-connector-java-8.0.16.jar
 COPY liberty-mysql/mysql-driver.xml ${CONFIG_DIR}configDropins/defaults/
 
 COPY liberty/server.xml $CONFIG_DIR
+COPY liberty/jvm.options $CONFIG_DIR
 
 COPY target/summit-api.war /opt/ol/wlp/usr/servers/defaultServer/apps
 EXPOSE 9080
