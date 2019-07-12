@@ -46,7 +46,7 @@ public class SummitResource {
 
     @PersistenceContext
     EntityManager entityManager;
-    int batchSize = 10000;
+    int batchSize = 100;
 
     @GET
     @Path("/v1/countCities")
