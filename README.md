@@ -47,9 +47,7 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
     git clone https://github.com/IBM/summit-jee-openshift.git
     ```
 
-6. Generate synthentic patient health records and populate the MySQL database.
-
-7. Edit the file `summit-api/liberty/server.xml` to change the `datasource` properties to the URL, port, user and password of your MySql database.
+6. Edit the file `summit-api/liberty/server.xml` to change the `datasource` properties to the URL, port, user and password of your MySql database.
 
 7. Build the Java EE application.
     ```
@@ -89,6 +87,8 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
 
     In a browser window, navigate to `<hostname>/openapi/ui/`.  An OpenAPI specification of the endpoints and operations supported by the Java EE application appears.
 
+14. Generate synthentic patient health records and populate the MySQL database by running the `generate.sh` script in `generate/`. Refer to the script's [README](generate/README.md) for instructions on how to run the script. 
+> NOTE: The script populates the MySQL database at about 125 patients per hour
 
 # License
 
