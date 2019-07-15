@@ -87,7 +87,11 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
 
     In a browser window, navigate to `<hostname>/openapi/ui/`.  An OpenAPI specification of the endpoints and operations supported by the Java EE application appears.
 
-<<<<<<< HEAD
+
+14. Generate synthentic patient health records and populate the MySQL database by running the `generate.sh` script in `generate/`. Refer to the script's [README](generate/README.md) for instructions on how to run the script. 
+> NOTE: In our testing, the script populates the MySQL database at about 125 patients per hour.
+
+Once the application is up and running, the OpenAPI UI will allow you to browse the available APIs:
 ![memory](screenshots/s3.png)
 
 # Open Liberty in OpenShift
@@ -174,13 +178,23 @@ Memory utilization is able above 1GB
 ![memory](screenshots/s1.png)
 
 
-# JPQL - SQL Queries in Liberty
+# SQL Schema
 
-[tbd]
+The SQL schema in for `Synthea` derived data imported into Summit Health uses this logical pattern and maps tables to Java classes under `src/main/java/com/ibm/summithealth` mapped using JPA annotation. 
+
+```java
+Allergy.java     :@Table(name="Allergies")
+Appointment.java :@Table(name="Appointments")
+Provider.java    :@Table(name="Providers")
+Organization.java:@Table(name="Organizations")
+Prescription.java:@Table(name="Prescriptions")
+Observation.java: @Table(name="Observations")
+Patient.java:     @Table(name="Patients")
+```
+
+![tables](screenshots/s5.png)
 
 
-14. Generate synthentic patient health records and populate the MySQL database by running the `generate.sh` script in `generate/`. Refer to the script's [README](generate/README.md) for instructions on how to run the script. 
-> NOTE: The script populates the MySQL database at about 125 patients per hour
 
 # License
 
