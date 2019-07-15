@@ -1,12 +1,12 @@
 # Summit Health JEE Application on Openshift
 
-This project is a conceptual Java EE application running on Open Liberty for a health records system, designed to showcase best in class integration of modern cloud technology running on Openshift.
+This project is a conceptual Java EE application running on Open Liberty for a health records system, designed to showcase best in class integration of modern cloud technology running on OpenShift.
 
 ## Summit Health Context
 
 Summit Health is a conceptual healthcare/insurance type company. It has been around a long time, and has 100s of thousands of patient records. Summit's health records look very similar to the health records of most insurance companies.
 
-Originally, Summit Health used a monolithic application structure for their application. Their application structure was a full stack Java application running on Websphere connected to a DB2 database. Here's what the original architecture for Summit Health looked like: 
+Originally, Summit Health used a monolithic application structure for their application. Their application structure was a full stack Java application running on WebSphere connected to a DB2 database on System z. Here's what the original architecture for Summit Health looked like: 
 
 ![](readme_images/original_architecture.png)
 
@@ -14,7 +14,17 @@ Recently, Summit Health decided to modernize their application and break it up i
 
 ![](readme_images/new_architecture.png)
 
-Since moving to Openshift, Summit Health has expanded to include new microservices that include an Admin application and an Analytics application. These along with the Patient UI can be found in seperate code patterns.
+Since moving to Openshift, Summit Health has expanded to include new microservices that include an Admin application and an Analytics application. These along with the Patient UI can be found in seperate code patterns:
+
+
+1.[Creating a Health Data Analytics App](https://developer.ibm.com/patterns/creating-a-health-data-analytics-app-with-legacy-mainframe-code-and-cloud/)
+
+2. Source to image pattern location TBD * note * add URL when published (Anton) 
+   - Switch between z/OS backed health database or Java EE on OpenShift
+ 
+3. [PHP Admin Front-end](https://github.com/IBM/summit-health-admin) * add URL when published * (Max)
+
+![Summit Health Admin](https://github.com/IBM/summit-health-admin/raw/master/readme_images/screenshot.png)
 
 # Architecture
 
@@ -46,21 +56,18 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
     ```
     git clone https://github.com/IBM/summit-jee-openshift.git
     ```
-
-6. Edit the file `summit-api/liberty/server.xml` to change the `datasource` properties to the URL, port, user and password of your MySql database.
-
-7. Build the Java EE application.
+6. Build the Java EE application.
     ```
     cd summit-api
     mvn package
     ```
 
-8. Build the Java EE docker image.
+7. Build the Java EE docker image.
    ```
    docker build -t summit-api:1
    ```
 
-9. Create a repository in your dockerhub account and push the Java EE docker image to it.  (Substitute your account name into the commands.)
+8. Create a repository in your dockerhub account and push the Java EE docker image to it.  (Substitute your account name into the commands.)
 
    ```
    docker tag summit-api:1 YOURACCOUNT/summit-api:1
@@ -68,9 +75,9 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
    docker push YOURACCOUNT/summit-api:1
    ```
 
-10. Edit the file `summit-api/deploy-summit-api.yaml` to change the `image` key to your docker image.
+9. Edit the file `summit-api/kubernetes-openshift.yaml` to change the `image` key to your docker image.
 
-11. Set the secret values for your MySQL cloud deployment  in the `create-secrets.sh` script.
+10. Edsit the secret values for your MySQL cloud deployment in the `create-secrets.sh` script. All the necesssary values can be found in the IBM Cloud MySQL service credentials page:
 
 ![memory](screenshots/mysql.png)
 
@@ -92,25 +99,29 @@ container by the deployment yaml via Kubernetes secrets to set database access p
                     password="${ENV_MYSQL_PWD}"/>
 ```
 
-12. Deploy the application to your cluster.
+11. Deploy the application to your cluster.
     ````
-    oc apply -f deploy-summit-api.yaml
+    oc apply -f kubernetes-openshift.yaml
     ```` 
 
-13. Create a route to expose the application to the internet.
+12. Create a route to expose the application to the internet.
     ````
-    oc expose svc summit-svc
+    oc expose svc summit-api
     ````
 
-14. Verify that the application is working.  First obtain the hostname assigned to the route.
+13. Verify that the application is working.  First obtain the hostname assigned to the route.
     ````
-    oc get route summit-svc
+    oc get route summit-api
+	
+	NAME         HOST/PORT                                                                                                          PATH      SERVICES     PORT      TERMINATION   WILDCARD
+	summit-api   summit-api-summit-api.koyfman-rhos-july-5290c8c8e5797924dc1ad5d1b85b37c0-0001.us-east.containers.appdomain.cloud             summit-api   http                    None
+	
     ````
 
     In a browser window, navigate to `<hostname>/openapi/ui/`.  An OpenAPI specification of the endpoints and operations supported by the Java EE application appears.
 
 
-15. Generate synthentic patient health records and populate the MySQL database by running the `generate.sh` script in `generate/`. Refer to the script's [README](generate/README.md) for instructions on how to run the script. 
+14. Generate synthentic patient health records and populate the MySQL database by running the `generate.sh` script in `generate/`. Refer to the script's [README](generate/README.md) for instructions on how to run the script. 
 
 	> NOTE: In our testing, the script populates the MySQL database at about 125 patients per hour.
 
@@ -126,16 +137,58 @@ Once the application is up and running, the OpenAPI UI will allow you to browse 
 
 ## Build a Liberty container for using JPA with a JDBC driver
 
+This project builds its OpenLiberty container based on the RedHat UBI, Universal Base Image:
+https://www.redhat.com/en/blog/introducing-red-hat-universal-base-image
+
 To ensure that your Docker container works in the more security conscious environment of OpenShift, use Libert 19.0.0.5 or higher
 see:  https://openliberty.io/blog/2019/03/28/microprofile22-liberty-19003.html#docker.   In addition, to install the JDBC driver, note
 that `chown` option to `ADD` and the `chmod` needed to give the JVM permission to read the JDBC driver. 
 
 
-Part of the `Dockerfile` used to build the image:
+Part of the `Dockerfile` used to build the image downloads the MySQL JDBC driver to connect to our cloud MySQL instance.
+
 ```
 ADD --chown=default:root https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar  ${INSTALL_DIR}lib/mysql-connector-java-8.0.16.jar
 RUN chmod 644 ${INSTALL_DIR}lib/mysql-connector-java-8.0.16.jar
 COPY liberty-mysql/mysql-driver.xml ${CONFIG_DIR}configDropins/defaults/
+```
+
+The `persistence.xml` specifies the driver details that is injected as the default persistence context via 
+CDI:
+
+```xml
+    <jdbcDriver id="mysql-driver"
+                javax.sql.XADataSource="com.mysql.cj.jdbc.MysqlXADataSource"
+                javax.sql.ConnectionPoolDataSource="com.mysql.cj.jdbc.MysqlConnectionPoolDataSource"
+                libraryRef="mysql-library"/>
+
+    <library id="mysql-library">
+	    <fileset id="mysqlFileSet" dir="/opt/ol/wlp/lib"
+                 includes="mysql-connector-java-8.0.16.jar"/>
+    </library>
+```
+
+We don't need to specify any persistence context in this annotation because only one is defined:
+
+```java
+    @PersistenceContext
+    EntityManager entityManager;
+```
+
+# Memory management during bulk loading
+
+## Clear EntityManager during bulk load
+
+Because by default transactions are handled on a per call basis, when loading many records (100s of MBs) via `generate`, we noticed memory usage rose dramatically as the EntityManager instantiated Java objects representing each database table. Running `clear()` during batch
+processing allowed memory to be reclaimed after entites were pushed to MySQL.
+
+```java
+    private void flushBatch(int size, int cnt, String type) {
+        if ( (cnt % batchSize == 0) || (size == cnt) )  {
+		    entityManager.flush();
+            entityManager.clear();
+        }
+    }
 ```
 
 ## Update the gateway timeout settings to allow long running APIs.
@@ -147,7 +200,7 @@ The default OpenShift timeout for the gateway is 30 seconds, too short for long 
    route.route.openshift.io/summit-api annotated
 ```
 
-# JPA
+# Setting up JPA for OpenLiberty
 
 We set up a Data Source to allow Open Liberty to manage our connections to the MySQL database via 
 the MySQL JDBC driver. Fo more details, see this Open Liberty guide: https://openliberty.io/guides/jpa-intro.html
@@ -201,13 +254,13 @@ Memory exhastion (hard limit at 1GB and rapid drop off as the call fails and cle
 ![memory](screenshots/oom.png)
 
 
-Added a `jvm.options` with this field to increase the default 1GB heap size:
+To solve this problem, we an option in `jvm.options` to increase the amount of memory available to the JVM above the default 1GB heap size:
 
 ``` 
 -Xmx4096m
 ```
 
-And added this to the `Dockerfile`:
+And added this to the image by adding this line in the `Dockerfile`:
 
 
 ```
@@ -215,7 +268,8 @@ COPY liberty/jvm.options $CONFIG_DIR
 ```
 
 
-Memory utilization is able above 1GB
+The OpenShift monitoring dashboard shows how container memory is able to exceed the 1GB threshold when necessary (in this case, the peak is caused by JSON-B parsing JSON inpout to the REST call that generates simulated health records):
+
 ![memory](screenshots/s1.png)
 
 
