@@ -89,6 +89,96 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
 
     In a browser window, navigate to `<hostname>/openapi/ui/`.  An OpenAPI specification of the endpoints and operations supported by the Java EE application appears.
 
+![memory](screenshots/s3.png)
+
+# Open Liberty in OpenShift
+
+## Build a Liberty container for using JPA with a JDBC driver
+
+To ensure that your Docker container works in the more security conscious environment of OpenShift, use Libert 19.0.0.5 or higher
+see:  https://openliberty.io/blog/2019/03/28/microprofile22-liberty-19003.html#docker.   In addition, to install the JDBC driver, note
+that `chown` option to `ADD` and the `chmod` needed to give the JVM permission to read the JDBC driver. 
+
+
+Part of the `Dockerfile` used to build the image:
+```
+ADD --chown=default:root https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar  ${INSTALL_DIR}lib/mysql-connector-java-8.0.16.jar
+RUN chmod 644 ${INSTALL_DIR}lib/mysql-connector-java-8.0.16.jar
+COPY liberty-mysql/mysql-driver.xml ${CONFIG_DIR}configDropins/defaults/
+```
+
+## Update the gateway timeout settings to allow long running APIs.
+
+The default OpenShift timeout for the gateway is 30 seconds, too short for long running REST calls like the `generate` endpoint to load health data. It's neceessary to set the route timeout to a longer value for the route defined for the health API:
+
+```
+  #   oc annotate route summit-api --overwrite haproxy.router.openshift.io/timeout=60m
+   route.route.openshift.io/summit-api annotated
+```
+
+# JPA
+
+```xml
+    <jdbcDriver id="mysql-driver"
+                javax.sql.XADataSource="com.mysql.cj.jdbc.MysqlXADataSource"
+                javax.sql.ConnectionPoolDataSource="com.mysql.cj.jdbc.MysqlConnectionPoolDataSource"
+                libraryRef="mysql-library"/>
+
+    <library id="mysql-library">
+	    <fileset id="mysqlFileSet" dir="/opt/ol/wlp/lib"
+                 includes="mysql-connector-java-8.0.16.jar"/>
+    </library>
+```
+
+
+# Memory management during bulk loading
+
+## Clear EntityManager during bulk load
+
+Because by default transactions are handled on a per call basis, when loading many records (100s of MBs) via `generate`, we noticed memory usage rose dramatically as the EntityManager instantiated Java objects representing each database table. Running `clear()` during batch
+processing allowed memory to be reclaimed after entites were pushed to MySQL.
+
+```java
+    private void flushBatch(int size, int cnt, String type) {
+        if ( (cnt % batchSize == 0) || (size == cnt) )  {
+		    entityManager.flush();
+            entityManager.clear();
+        }
+    }
+```
+
+## Increase JVM Heap size
+
+
+The OpenShift dashboard is helpful in problem determination, in our case memory exhaustion due to the default 1GB JVM heap size during bulk loading via JPA:
+
+Memory exhastion (hard limit at 1GB and rapid drop off as the call fails and cleanup occurs):
+
+![memory](screenshots/s2.png)
+
+
+Added a `jvm.options` with this field to increase the default 1GB heap size:
+
+``` 
+-Xmx4096m
+```
+
+And added this to the `Dockerfile`:
+
+
+```
+COPY liberty/jvm.options $CONFIG_DIR
+```
+
+
+Memory utilization is able above 1GB
+![memory](screenshots/s1.png)
+
+
+# JPQL - SQL Queries in Liberty
+
+[tbd]
+
 
 # License
 
