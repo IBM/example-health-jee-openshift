@@ -149,6 +149,12 @@ The default OpenShift timeout for the gateway is 30 seconds, too short for long 
 
 # JPA
 
+We set up a Data Source to allow Open Liberty to manage our connections to the MySQL database via 
+the MySQL JDBC driver. Fo more details, see this Open Liberty guide: https://openliberty.io/guides/jpa-intro.html
+
+The `persistence.xml` specifies the driver details that is injected as the default persistence context via 
+CDI:
+
 ```xml
     <jdbcDriver id="mysql-driver"
                 javax.sql.XADataSource="com.mysql.cj.jdbc.MysqlXADataSource"
@@ -159,6 +165,13 @@ The default OpenShift timeout for the gateway is 30 seconds, too short for long 
 	    <fileset id="mysqlFileSet" dir="/opt/ol/wlp/lib"
                  includes="mysql-connector-java-8.0.16.jar"/>
     </library>
+```
+
+We don't need to specify any persistence context in this annotation because only one is defined:
+
+```java
+    @PersistenceContext
+    EntityManager entityManager;
 ```
 
 
