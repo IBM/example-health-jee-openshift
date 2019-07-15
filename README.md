@@ -17,10 +17,9 @@ Recently, Summit Health decided to modernize their application and break it up i
 Since moving to Openshift, Summit Health has expanded to include new microservices that include an Admin application and an Analytics application. These along with the Patient UI can be found in seperate code patterns:
 
 
-1.[Creating a Health Data Analytics App](https://developer.ibm.com/patterns/creating-a-health-data-analytics-app-with-legacy-mainframe-code-and-cloud/)
+1. [Creating a Health Data Analytics App](https://developer.ibm.com/patterns/creating-a-health-data-analytics-app-with-legacy-mainframe-code-and-cloud/)
 
 2. Source to image pattern location TBD * note * add URL when published (Anton) 
-   - Switch between z/OS backed health database or Java EE on OpenShift
  
 3. [PHP Admin Front-end](https://github.com/IBM/summit-health-admin) * add URL when published * (Max)
 
