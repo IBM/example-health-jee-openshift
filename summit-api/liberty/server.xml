@@ -11,10 +11,10 @@
     <dataSource id="DefaultDataSource" jndiName="jdbc/summit-api" jdbcDriverRef="mysql-driver"
                 type="javax.sql.ConnectionPoolDataSource" transactional="true">
 
-        <properties serverName="sl-us-south-1-portal.51.dblayer.com" portNumber="23411"
-                    databaseName="ex"
-                    user="admin"
-                    password="BXGCYZWXFMSIFTHD"/>
+        <properties serverName="${ENV_MYSQL_URL}" portNumber="${ENV_MYSQL_PORT}"
+                    databaseName="${ENV_MYSQL_DB_NAME}"
+                    user="${ENV_MYSQL_USER}"
+                    password="${ENV_MYSQL_PWD}"/>
 	<connectionManager maxIdleTimeout="20000s"/>
 
     </dataSource>

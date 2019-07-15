@@ -33,5 +33,31 @@ spec:
         ports:
         - containerPort: 9080
         imagePullPolicy: Always
+        env:
+        - name: ENV_MYSQL_URL
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: db_host
+        - name: ENV_MYSQL_PORT
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: db_port
+        - name: ENV_MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: db_username
+        - name: ENV_MYSQL_PWD
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: db_password
+        - name: ENV_MYSQL_DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: db_name
       restartPolicy: Always
 ---

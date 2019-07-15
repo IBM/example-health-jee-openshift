@@ -70,17 +70,39 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
 
 10. Edit the file `summit-api/deploy-summit-api.yaml` to change the `image` key to your docker image.
 
-11. Deploy the application to your cluster.
+11. Set the secret values for your MySQL cloud deployment  in the `create-secrets.sh` script.
+
+![memory](screenshots/mysql.png)
+
+```
+$  ./create-secrets.sh 
+secret/db-secrets created
+```
+
+The Open Liberty DataSource configuration in `server.xml` uses environment variables injected into the
+container by the deployment yaml via Kubernetes secrets to set database access parameters:
+
+```xml
+    <dataSource id="DefaultDataSource" jndiName="jdbc/summit-api" jdbcDriverRef="mysql-driver"
+                type="javax.sql.ConnectionPoolDataSource" transactional="true">
+
+        <properties serverName="${ENV_MYSQL_URL}" portNumber="${ENV_MYSQL_PORT}"
+                    databaseName="${ENV_MYSQL_DB_NAME}"
+                    user="${ENV_MYSQL_USER}"
+                    password="${ENV_MYSQL_PWD}"/>
+```
+
+12. Deploy the application to your cluster.
     ````
     oc apply -f deploy-summit-api.yaml
     ```` 
 
-12. Create a route to expose the application to the internet.
+13. Create a route to expose the application to the internet.
     ````
     oc expose svc summit-svc
     ````
 
-13. Verify that the application is working.  First obtain the hostname assigned to the route.
+14. Verify that the application is working.  First obtain the hostname assigned to the route.
     ````
     oc get route summit-svc
     ````
@@ -88,10 +110,16 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
     In a browser window, navigate to `<hostname>/openapi/ui/`.  An OpenAPI specification of the endpoints and operations supported by the Java EE application appears.
 
 
-14. Generate synthentic patient health records and populate the MySQL database by running the `generate.sh` script in `generate/`. Refer to the script's [README](generate/README.md) for instructions on how to run the script. 
-> NOTE: In our testing, the script populates the MySQL database at about 125 patients per hour.
+15. Generate synthentic patient health records and populate the MySQL database by running the `generate.sh` script in `generate/`. Refer to the script's [README](generate/README.md) for instructions on how to run the script. 
+
+	> NOTE: In our testing, the script populates the MySQL database at about 125 patients per hour.
+
+	> NOTE: This directive in `liberty.xml` is necessary to allow long-running patient load operations via REST:  `<transaction totalTranLifetimeTimeout="3600s"/>`. The default timeout of 120 seconds is too
+short to batch patients at 50 per call, as the current script is configured.
+
 
 Once the application is up and running, the OpenAPI UI will allow you to browse the available APIs:
+
 ![memory](screenshots/s3.png)
 
 # Open Liberty in OpenShift
@@ -157,7 +185,7 @@ The OpenShift dashboard is helpful in problem determination, in our case memory 
 
 Memory exhastion (hard limit at 1GB and rapid drop off as the call fails and cleanup occurs):
 
-![memory](screenshots/s2.png)
+![memory](screenshots/oom.png)
 
 
 Added a `jvm.options` with this field to increase the default 1GB heap size:
