@@ -23,7 +23,6 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
  
 3. [PHP Admin Front-end](https://github.com/IBM/summit-health-admin) * add URL when published * (Max)
 
-![Summit Health Admin](https://github.com/IBM/summit-health-admin/raw/master/readme_images/screenshot.png)
 
 # Architecture
 
@@ -39,10 +38,11 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
 
 1. Install the following prerequisite tools.
     * A Java 8 (or higher) JDK such as [OpenJDK](https://openjdk.java.net/install/index.html)
-    * [maven](https://maven.apache.org/download.cgi)
-    * [docker](https://www.docker.com/get-started)
-    * [ibmcloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
-    * [openshift (oc) CLI](https://www.okd.io/download.html)
+    * [Maven](https://maven.apache.org/download.cgi)
+    * [Docker](https://www.docker.com/get-started)
+    * [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
+    * [OpenShift (oc) CLI](https://www.okd.io/download.html)
+	* [MySQL client](https://dev.mysql.com/downloads/)
 
 2. [Sign up for an IBM Cloud account](https://cloud.ibm.com/docs/account?topic=account-signup) if you do not have one.
    You must have a Pay-As-You-Go or Subscription account to deploy this code pattern.  See https://cloud.ibm.com/docs/account?topic=account-upgrading-account to upgrade your account.
@@ -54,19 +54,22 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
 5. Clone this project.
     ```
     git clone https://github.com/IBM/summit-jee-openshift.git
-    ```
-6. Build the Java EE application.
+	```
+
+6. Create the database and tables using a MySQL client. Import the SQL schema for the the [Synthea](https://github.com/synthetichealth/synthea) simulated patient record data using the SQL file at: `samples/health_schema.sql`.
+
+7. Build the Java EE application.
     ```
     cd summit-api
     mvn package
     ```
 
-7. Build the Java EE docker image.
+8. Build the Java EE docker image.
    ```
    docker build -t summit-api:1
    ```
 
-8. Create a repository in your dockerhub account and push the Java EE docker image to it.  (Substitute your account name into the commands.)
+9. Create a repository in your dockerhub account and push the Java EE docker image to it.  (Substitute your account name into the commands.)
 
    ```
    docker tag summit-api:1 YOURACCOUNT/summit-api:1
@@ -74,11 +77,18 @@ Since moving to Openshift, Summit Health has expanded to include new microservic
    docker push YOURACCOUNT/summit-api:1
    ```
 
-9. Edit the file `summit-api/kubernetes-openshift.yaml` to change the `image` key to your docker image.
+10. Edit the file `summit-api/kubernetes-openshift.yaml` to change the `image` key to your docker image.
 
-10. Edsit the secret values for your MySQL cloud deployment in the `create-secrets.sh` script. All the necesssary values can be found in the IBM Cloud MySQL service credentials page:
+11. Edsit the secret values for your MySQL cloud deployment in the `create-secrets.sh` script. All the necesssary values can be found in the IBM Cloud MySQL service credentials page:
 
 ![memory](screenshots/mysql.png)
+
+> NOTE: The connection URL would resemble the following. Substitue the server name and port from the Cloud service page above. The value of `DB_NAME` use the database created and populated with the tables in step 6 above.
+```
+    --from-literal=db_host="jdbc:mysql://$HOST:$PORT/$DB_NAME?sessionVariables=sql_mode=''"
+```
+
+Run the script to load the secrets into the OpenShift project.
 
 ```
 $  ./create-secrets.sh 
@@ -92,23 +102,22 @@ container by the deployment yaml via Kubernetes secrets to set database access p
     <dataSource id="DefaultDataSource" jndiName="jdbc/summit-api" jdbcDriverRef="mysql-driver"
                 type="javax.sql.ConnectionPoolDataSource" transactional="true">
 
-        <properties serverName="${ENV_MYSQL_URL}" portNumber="${ENV_MYSQL_PORT}"
-                    databaseName="${ENV_MYSQL_DB_NAME}"
+        <properties url="${ENV_MYSQL_URL}"
                     user="${ENV_MYSQL_USER}"
                     password="${ENV_MYSQL_PWD}"/>
 ```
 
-11. Deploy the application to your cluster.
+12. Deploy the application to your cluster.
     ````
     oc apply -f kubernetes-openshift.yaml
     ```` 
 
-12. Create a route to expose the application to the internet.
+13. Create a route to expose the application to the internet.
     ````
     oc expose svc summit-api
     ````
 
-13. Verify that the application is working.  First obtain the hostname assigned to the route.
+14. Verify that the application is working.  First obtain the hostname assigned to the route.
     ````
     oc get route summit-api
 	
@@ -120,7 +129,7 @@ container by the deployment yaml via Kubernetes secrets to set database access p
     In a browser window, navigate to `<hostname>/openapi/ui/`.  An OpenAPI specification of the endpoints and operations supported by the Java EE application appears.
 
 
-14. Generate synthentic patient health records and populate the MySQL database by running the `generate.sh` script in `generate/`. Refer to the script's [README](generate/README.md) for instructions on how to run the script. 
+15. Generate synthentic patient health records and populate the MySQL database by running the `generate.sh` script in `generate/`. Refer to the script's [README](generate/README.md) for instructions on how to run the script. 
 
 	> NOTE: In our testing, the script populates the MySQL database at about 125 patients per hour.
 

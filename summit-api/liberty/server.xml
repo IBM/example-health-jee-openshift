@@ -11,7 +11,7 @@
     <dataSource id="DefaultDataSource" jndiName="jdbc/summit-api" jdbcDriverRef="mysql-driver"
                 type="javax.sql.ConnectionPoolDataSource" transactional="true">
 
-        <properties serverName="${ENV_MYSQL_URL}" portNumber="${ENV_MYSQL_PORT}"
+        <properties url="${ENV_MYSQL_URL}"
                     databaseName="${ENV_MYSQL_DB_NAME}"
                     user="${ENV_MYSQL_USER}"
                     password="${ENV_MYSQL_PWD}"/>
