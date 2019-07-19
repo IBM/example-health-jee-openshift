@@ -12,6 +12,10 @@ import javax.json.bind.annotation.JsonbProperty;
 @Entity
 @Table(name="Appointments")
 @NamedQuery(name="Appointment.findAll", query="SELECT a FROM Appointment a")
+
+@NamedQuery(name="Appointment.getAppointments", query="SELECT NEW com.ibm.summithealth.AppointmentList(p.patientId, p.birthdate, p.city, p.postcode, a.description, " + 
+		"a.allergyStart, a.allergyStop) FROM Patient p JOIN Allergy a ON p.patientId = a.patientId")
+
 public class Appointment implements Serializable {
 	private static final long serialVersionUID = 1L;
 

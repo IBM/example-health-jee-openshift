@@ -141,6 +141,23 @@ Once the application is up and running, the OpenAPI UI will allow you to browse 
 
 ![memory](screenshots/s3.png)
 
+# SQL Schema
+
+The SQL schema in for `Synthea` derived data imported into Summit Health uses this logical pattern and maps tables to Java classes under `src/main/java/com/ibm/summithealth` mapped using JPA annotation. 
+
+```java
+Allergy.java     :@Table(name="Allergies")
+Appointment.java :@Table(name="Appointments")
+Provider.java    :@Table(name="Providers")
+Organization.java:@Table(name="Organizations")
+Prescription.java:@Table(name="Prescriptions")
+Observation.java: @Table(name="Observations")
+Patient.java:     @Table(name="Patients")
+```
+
+![tables](screenshots/s5.png)
+
+
 # Open Liberty in OpenShift
 
 ## Build a Liberty container for using JPA with a JDBC driver
@@ -280,22 +297,6 @@ The OpenShift monitoring dashboard shows how container memory is able to exceed 
 
 ![memory](screenshots/s1.png)
 
-
-# SQL Schema
-
-The SQL schema in for `Synthea` derived data imported into Summit Health uses this logical pattern and maps tables to Java classes under `src/main/java/com/ibm/summithealth` mapped using JPA annotation. 
-
-```java
-Allergy.java     :@Table(name="Allergies")
-Appointment.java :@Table(name="Appointments")
-Provider.java    :@Table(name="Providers")
-Organization.java:@Table(name="Organizations")
-Prescription.java:@Table(name="Prescriptions")
-Observation.java: @Table(name="Observations")
-Patient.java:     @Table(name="Patients")
-```
-
-![tables](screenshots/s5.png)
 
 
 
