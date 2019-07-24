@@ -77,16 +77,15 @@ Since moving to Openshift, Example Health has expanded to include new microservi
    docker push YOURACCOUNT/ol-example-health:1
    ```
 
-9. Create a project (like a namespace) in OpenShift:
-
+10. Create a project (like a namespace) in OpenShift. This will create a new project and set it as the working project where pods and services will get deployed.
 
 	```
 	oc new-project health
 	```
 	
-10. Edit the file `example-health-api/kubernetes-openshift.yaml` to change the `image` key to your docker image.
+11. Edit the file `example-health-api/kubernetes-openshift.yaml` to change the `image` key to your docker image.
 
-11. Set the secret values for your MySQL cloud deployment in the `create-secrets.sh` script. All the necesssary values can be found in the IBM Cloud MySQL service credentials page:
+12. Set the secret values for your MySQL cloud deployment in the `create-secrets.sh` script. All the necesssary values can be found in the IBM Cloud MySQL service credentials page:
 
 ![memory](screenshots/mysql.png)
 
@@ -114,29 +113,29 @@ container by the deployment yaml via Kubernetes secrets to set database access p
                     password="${ENV_MYSQL_PWD}"/>
 ```
 
-12. Deploy the application to your cluster.
+13. Deploy the application to your cluster.
     ````
     oc apply -f kubernetes-openshift.yaml
     ```` 
 
-13. Create a route to expose the application to the internet.
+14. Create a route to expose the application to the internet.
     ````
     oc expose svc example-health-api
     ````
 
-14. Verify that the application is working.  First obtain the hostname assigned to the route.
+15. Verify that the application is working.  First obtain the hostname assigned to the route.
     ````
     oc get route example-health-api
 	
 	NAME                 HOST/PORT                        PATH         SERVICES     PORT      TERMINATION   WILDCARD
-	example-health-api   example-health-api-summit-api.****.appdomain.cloud   example-health-api   http                    None
+	example-health-api   example-health-api-health.****.appdomain.cloud   example-health-api   http                    None
 	
     ````
 
     In a browser window, navigate to `<hostname>/openapi/ui/`.  An OpenAPI specification of the endpoints and operations supported by the Java EE application appears.
 
 
-15. Generate synthentic patient health records and populate the MySQL database by running the `generate.sh` script in `generate/`. Refer to the script's [README](generate/README.md) for instructions on how to run the script. 
+16. Generate synthentic patient health records and populate the MySQL database by running the `generate.sh` script in `generate/`. Refer to the script's [README](generate/README.md) for instructions on how to run the script. 
 
 	> NOTE: In our testing, the script populates the MySQL database at about 125 patients per hour.
 
@@ -150,7 +149,7 @@ Once the application is up and running, the OpenAPI UI will allow you to browse 
 
 # SQL Schema
 
-The SQL schema in for `Synthea` derived data imported into Example Health uses this logical pattern and maps tables to Java classes under `src/main/java/com/ibm/summithealth` mapped using JPA annotation. 
+The SQL schema in for `Synthea` derived data imported into Example Health uses this logical pattern and maps tables to Java classes under `src/main/java/com/ibm/examplehealth` mapped using JPA annotation. 
 
 ```java
 Allergy.java     :@Table(name="Allergies")
