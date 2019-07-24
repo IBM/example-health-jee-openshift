@@ -1,4 +1,4 @@
-package com.ibm.summithealth;
+package com.ibm.examplehealth;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.ibm.summithealth;
+package com.ibm.examplehealth;
 
 import java.io.Serializable;
 import javax.persistence.*;

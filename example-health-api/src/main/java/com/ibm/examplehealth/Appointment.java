@@ -1,4 +1,4 @@
-package com.ibm.summithealth;
+package com.ibm.examplehealth;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -29,7 +29,7 @@ import javax.json.bind.annotation.JsonbProperty;
             String office_zip) {
 */
 @NamedQuery(name="Appointment.getAppointments",
-		query="SELECT NEW com.ibm.summithealth.AppointmentList(p.patientId, p.firstName, p.lastName, app.date, app.time, " + 
+		query="SELECT NEW com.ibm.examplehealth.AppointmentList(p.patientId, p.firstName, p.lastName, app.date, app.time, " + 
 		"prov.name, prov.speciality, org.name, org.address, org.city, org.state, org.postcode) "  + 
 		"FROM Patient p, Appointment app, Provider prov, Organization org " + 
 		"WHERE app.patientId=:pid AND p.patientId=:pid AND app.providerId=prov.organizationId AND org.organizationId=app.providerId")

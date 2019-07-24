@@ -1,4 +1,4 @@
-package com.ibm.summithealth;
+package com.ibm.examplehealth;
 
 public class Credentials {
     public Credentials() {

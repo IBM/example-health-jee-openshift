@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: summit-api
+  name: example-health-api
   labels:
-    app: summit-api
+    app: example-health-api
 spec:
   selector:
-    app: summit-api
+    app: example-health-api
   ports:
     - port: 9080
       name: http
@@ -16,7 +16,7 @@ spec:
 kind: Deployment
 apiVersion: apps/v1beta1
 metadata:
-  name: summit-api
+  name: example-health-api
 spec:
   replicas: 1
   template:
@@ -24,12 +24,12 @@ spec:
       annotations: 
         sidecar.istio.io/inject: "true"    
       labels:
-        app: summit-api
+        app: example-health-api
         version: v1
     spec:
       containers:
-      - name: summit-api
-        image: ykoyfman/ol-ubi-summit:latest
+      - name: example-health-api
+        image: ykoyfman/ol-example-health:latest
         ports:
         - containerPort: 9080
         imagePullPolicy: Always

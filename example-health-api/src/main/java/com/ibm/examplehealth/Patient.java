@@ -1,4 +1,4 @@
-package com.ibm.summithealth;
+package com.ibm.examplehealth;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -55,12 +55,12 @@ import javax.json.bind.annotation.JsonbTransient;
 @Table(name="Patients")
 @NamedQuery(name="Patient.countAll", query="SELECT count(p) FROM Patient p")
 @NamedQuery(name="Patient.findAll", query="SELECT p FROM Patient p")
-@NamedQuery(name="Patient.getPatients", query="SELECT NEW com.ibm.summithealth.Patient(p.firstName, p.lastName, p.gender, p.birthdate) FROM Patient p")
+@NamedQuery(name="Patient.getPatients", query="SELECT NEW com.ibm.examplehealth.Patient(p.firstName, p.lastName, p.gender, p.birthdate) FROM Patient p")
 @NamedQuery(name = "Patient.findPatient", query = "SELECT p FROM Patient p WHERE "
 	+ "p.patientId = :pid")
 @NamedQuery(name="Patient.login", query="SELECT p FROM Patient p WHERE p.userId=:userId AND p.password = :password")
 @NamedQuery(name="Patient.populations", query="select p.postcode, p.city, count(p) from Patient p group by p.city, p.postcode")
-@NamedQuery(name="Patient.getPop", query="SELECT NEW com.ibm.summithealth.CityCounts(p.city, p.postcode, count(p)) FROM Patient p where not p.postcode='' group by p.city, p.postcode")
+@NamedQuery(name="Patient.getPop", query="SELECT NEW com.ibm.examplehealth.CityCounts(p.city, p.postcode, count(p)) FROM Patient p where not p.postcode='' group by p.city, p.postcode")
 
 public class Patient implements Serializable {
 	private static final long serialVersionUID = 1L;

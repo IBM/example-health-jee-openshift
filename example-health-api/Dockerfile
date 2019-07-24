@@ -10,5 +10,5 @@ COPY liberty-mysql/mysql-driver.xml ${CONFIG_DIR}configDropins/defaults/
 COPY liberty/server.xml $CONFIG_DIR
 COPY liberty/jvm.options $CONFIG_DIR
 
-COPY target/summit-api.war /opt/ol/wlp/usr/servers/defaultServer/apps
+COPY target/health-api.war /opt/ol/wlp/usr/servers/defaultServer/apps
 EXPOSE 9080

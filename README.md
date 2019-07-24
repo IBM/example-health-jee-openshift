@@ -53,33 +53,40 @@ Since moving to Openshift, Example Health has expanded to include new microservi
 
 5. Clone this project.
     ```
-    git clone https://github.com/IBM/summit-jee-openshift.git
+    git clone https://github.com/IBM/example-health-jee-openshift.git
 	```
 
 6. Create the database and tables using a MySQL client. Import the SQL schema for the the [Synthea](https://github.com/synthetichealth/synthea) simulated patient record data using the SQL file at: `samples/health_schema.sql`.
 
 7. Build the Java EE application.
     ```
-    cd summit-api
+    cd example-health-api
     mvn package
     ```
 
 8. Build the Java EE docker image.
    ```
-   docker build -t summit-api:1
+   docker build -t ol-example-health:1
    ```
 
 9. Create a repository in your dockerhub account and push the Java EE docker image to it.  (Substitute your account name into the commands.)
 
    ```
-   docker tag summit-api:1 YOURACCOUNT/summit-api:1
+   docker tag ol-example-health:1 YOURACCOUNT/ol-example-health:1
    docker login -u YOURACCOUNT
-   docker push YOURACCOUNT/summit-api:1
+   docker push YOURACCOUNT/ol-example-health:1
    ```
 
-10. Edit the file `summit-api/kubernetes-openshift.yaml` to change the `image` key to your docker image.
+9. Create a project (like a namespace) in OpenShift:
 
-11. Edsit the secret values for your MySQL cloud deployment in the `create-secrets.sh` script. All the necesssary values can be found in the IBM Cloud MySQL service credentials page:
+
+	```
+	oc new-project health
+	```
+	
+10. Edit the file `example-health-api/kubernetes-openshift.yaml` to change the `image` key to your docker image.
+
+11. Set the secret values for your MySQL cloud deployment in the `create-secrets.sh` script. All the necesssary values can be found in the IBM Cloud MySQL service credentials page:
 
 ![memory](screenshots/mysql.png)
 
@@ -99,7 +106,7 @@ The Open Liberty DataSource configuration in `server.xml` uses environment varia
 container by the deployment yaml via Kubernetes secrets to set database access parameters:
 
 ```xml
-    <dataSource id="DefaultDataSource" jndiName="jdbc/summit-api" jdbcDriverRef="mysql-driver"
+    <dataSource id="DefaultDataSource" jndiName="jdbc/health-api" jdbcDriverRef="mysql-driver"
                 type="javax.sql.ConnectionPoolDataSource" transactional="true">
 
         <properties url="${ENV_MYSQL_URL}"
@@ -114,15 +121,15 @@ container by the deployment yaml via Kubernetes secrets to set database access p
 
 13. Create a route to expose the application to the internet.
     ````
-    oc expose svc summit-api
+    oc expose svc example-health-api
     ````
 
 14. Verify that the application is working.  First obtain the hostname assigned to the route.
     ````
-    oc get route summit-api
+    oc get route example-health-api
 	
-	NAME         HOST/PORT                                                                                                          PATH      SERVICES     PORT      TERMINATION   WILDCARD
-	summit-api   summit-api-summit-api.koyfman-rhos-july-5290c8c8e5797924dc1ad5d1b85b37c0-0001.us-east.containers.appdomain.cloud             summit-api   http                    None
+	NAME                 HOST/PORT                        PATH         SERVICES     PORT      TERMINATION   WILDCARD
+	example-health-api   example-health-api-summit-api.****.appdomain.cloud   example-health-api   http                    None
 	
     ````
 
@@ -221,8 +228,8 @@ processing allowed memory to be reclaimed after entites were pushed to MySQL.
 The default OpenShift timeout for the gateway is 30 seconds, too short for long running REST calls like the `generate` endpoint to load health data. It's neceessary to set the route timeout to a longer value for the route defined for the health API:
 
 ```
-  #   oc annotate route summit-api --overwrite haproxy.router.openshift.io/timeout=60m
-   route.route.openshift.io/summit-api annotated
+  #   oc annotate route example-api --overwrite haproxy.router.openshift.io/timeout=60m
+   route.route.openshift.io/example-api annotated
 ```
 
 # Setting up JPA for OpenLiberty

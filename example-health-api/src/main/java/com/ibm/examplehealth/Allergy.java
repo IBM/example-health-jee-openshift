@@ -1,4 +1,4 @@
-package com.ibm.summithealth;
+package com.ibm.examplehealth;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -11,7 +11,7 @@ import javax.json.bind.annotation.JsonbProperty;
 @Entity
 @Table(name="Allergies")
 @NamedQuery(name="Allergy.findAll", query="SELECT a FROM Allergy a")
-@NamedQuery(name="Allergy.getAllergies", query="SELECT NEW com.ibm.summithealth.AllergyList(p.patientId, p.birthdate, p.city, p.postcode, a.description, " + 
+@NamedQuery(name="Allergy.getAllergies", query="SELECT NEW com.ibm.examplehealth.AllergyList(p.patientId, p.birthdate, p.city, p.postcode, a.description, " + 
 		"a.allergyStart, a.allergyStop) FROM Patient p JOIN Allergy a ON p.patientId = a.patientId")
 
 public class Allergy implements Serializable {

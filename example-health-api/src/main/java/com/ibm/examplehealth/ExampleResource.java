@@ -1,4 +1,4 @@
-package com.ibm.summithealth;
+package com.ibm.examplehealth;
 
 import javax.ejb.Stateless;
 import javax.json.Json;
@@ -42,7 +42,7 @@ import java.util.logging.*;
 
 @Path("/")
 @Stateless
-public class SummitResource {
+public class ExampleResource {
 
     @PersistenceContext
     EntityManager entityManager;
