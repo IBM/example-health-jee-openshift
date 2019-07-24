@@ -13,8 +13,26 @@ import javax.json.bind.annotation.JsonbProperty;
 @Table(name="Appointments")
 @NamedQuery(name="Appointment.findAll", query="SELECT a FROM Appointment a")
 
-@NamedQuery(name="Appointment.getAppointments", query="SELECT NEW com.ibm.summithealth.AppointmentList(p.patientId, p.birthdate, p.city, p.postcode, a.description, " + 
-		"a.allergyStart, a.allergyStop) FROM Patient p JOIN Allergy a ON p.patientId = a.patientId")
+/*
+ SELECT org.state, org.postcode, org.city, org.name, org.address, 
+		pat.first_name, pat.last_name, app.date, app.time, app.patient_id, prov.name, prov.speciality 
+		FROM Providers prov, Appointments app, Patients pat, Organizations org 
+		WHERE app.provider_id=prov.organization_id 
+		AND app.patient_id="bd2b67d0-f318-471d-83a6-1b130673d9f3" 
+		AND pat.patient_id="bd2b67d0-f318-471d-83a6-1b130673d9f3" 
+		AND org.organization_id=app.provider_id;
+
+		Constructor field order for use in NamedQuery:
+
+		public AppointmentList(String patient_id, String first_name, String last_name, String date, String time,
+            String doc_name, String field, String office_name, String office_addr, String office_city, String office_state,
+            String office_zip) {
+*/
+@NamedQuery(name="Appointment.getAppointments",
+		query="SELECT NEW com.ibm.summithealth.AppointmentList(p.patientId, p.firstName, p.lastName, app.date, app.time, " + 
+		"prov.name, prov.speciality, org.name, org.address, org.city, org.state, org.postcode) "  + 
+		"FROM Patient p, Appointment app, Provider prov, Organization org " + 
+		"WHERE app.patientId=:pid AND p.patientId=:pid AND app.providerId=prov.organizationId AND org.organizationId=app.providerId")
 
 public class Appointment implements Serializable {
 	private static final long serialVersionUID = 1L;

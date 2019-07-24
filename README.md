@@ -1,20 +1,20 @@
-# Summit Health JEE Application on Openshift
+# Example Health JEE Application on Openshift
 
 This project is a conceptual Java EE application running on Open Liberty for a health records system, designed to showcase best in class integration of modern cloud technology running on OpenShift.
 
-## Summit Health Context
+## Example Health Context
 
-Summit Health is a conceptual healthcare/insurance type company. It has been around a long time, and has 100s of thousands of patient records. Summit's health records look very similar to the health records of most insurance companies.
+Example Health is a conceptual healthcare/insurance type company. It has been around a long time, and has 100s of thousands of patient records. Example's health records look very similar to the health records of most insurance companies.
 
-Originally, Summit Health used a monolithic application structure for their application. Their application structure was a full stack Java application running on WebSphere connected to a DB2 database on System z. Here's what the original architecture for Summit Health looked like: 
+Originally, Example Health used a monolithic application structure for their application. Their application structure was a full stack Java application running on WebSphere connected to a DB2 database on System z. Here's what the original architecture for Example Health looked like: 
 
 ![](readme_images/original_architecture.png)
 
-Recently, Summit Health decided to modernize their application and break it up into microservices. They decided to move to a SQL database connected to a Java EE application running on Open Liberty for the business logic and a Node.js application for the Patient UI. In addition, Summit Health also decided to bring these applications to Openshift in the Cloud. The new current architecture for Summit Health looks like this: 
+Recently, Example Health decided to modernize their application and break it up into microservices. They decided to move to a SQL database connected to a Java EE application running on Open Liberty for the business logic and a Node.js application for the Patient UI. In addition, Example Health also decided to bring these applications to Openshift in the Cloud. The new current architecture for Example Health looks like this: 
 
 ![](readme_images/new_architecture.png)
 
-Since moving to Openshift, Summit Health has expanded to include new microservices that include an Admin application and an Analytics application. These along with the Patient UI can be found in seperate code patterns:
+Since moving to Openshift, Example Health has expanded to include new microservices that include an Admin application and an Analytics application. These along with the Patient UI can be found in seperate code patterns:
 
 
 1. [Creating a Health Data Analytics App](https://developer.ibm.com/patterns/creating-a-health-data-analytics-app-with-legacy-mainframe-code-and-cloud/)
@@ -143,7 +143,7 @@ Once the application is up and running, the OpenAPI UI will allow you to browse 
 
 # SQL Schema
 
-The SQL schema in for `Synthea` derived data imported into Summit Health uses this logical pattern and maps tables to Java classes under `src/main/java/com/ibm/summithealth` mapped using JPA annotation. 
+The SQL schema in for `Synthea` derived data imported into Example Health uses this logical pattern and maps tables to Java classes under `src/main/java/com/ibm/summithealth` mapped using JPA annotation. 
 
 ```java
 Allergy.java     :@Table(name="Allergies")

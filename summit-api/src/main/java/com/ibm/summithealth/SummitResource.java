@@ -23,7 +23,7 @@ import java.io.StringReader;
 import java.lang.StringBuffer;
 import java.sql.ResultSet;
 import java.util.List;
-
+import java.util.logging.*;
 
 // [x] GET /getInfo/patients/{patID} - gets patient’s details
 // [x] GET /getInfo/prescription/{patID} - gets patient’s prescriptions
@@ -47,6 +47,12 @@ public class SummitResource {
     @PersistenceContext
     EntityManager entityManager;
     int batchSize = 100;
+
+    static Logger logger = Logger.getLogger("ExampleHealthAPI");
+    static {
+        logger.setLevel(Level.ALL);
+        logger.addHandler(new ConsoleHandler());
+    }
 
     @GET
     @Path("/v1/countCities")
@@ -139,7 +145,7 @@ public class SummitResource {
                 .setParameter("pid", patId)
                 .getResultList();
         Jsonb jsonb = JsonbBuilder.create();
-        System.out.println("Found this many patients with id " + patId + " = " + results.size());
+        logger.info("Found this many patients with id " + patId + " = " + results.size());
         int returnCode = 0;
         if (results.size() == 0) {
             returnCode=1;
@@ -153,9 +159,36 @@ public class SummitResource {
         " \"CA_PATIENT_REQUEST\": " + (returnCode==0 ? jsonb.toJson(results.get(0)) : "\"\"") +
         "}}";
 
-        System.out.println("Patient blob: " + patientBlob);
+        logger.info("Patient blob: " + patientBlob);
 
         JsonReader jsonReader = Json.createReader(new StringReader(patientBlob));
+            
+        JsonObject jresponse  = jsonReader.readObject();
+        jsonReader.close();
+		return Response.ok(jresponse).build();
+	}
+
+    @GET
+    @Path("/v1/appointments/list/{patId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response appointments(@PathParam("patId") String patId) {
+        List<AppointmentList> results = entityManager.createNamedQuery("Appointment.getAppointments", AppointmentList.class)
+                .setParameter("pid", patId)
+                .getResultList();
+        Jsonb jsonb = JsonbBuilder.create();
+
+        
+        String appointmentBlob = "{\"ResultSet Output\": " + jsonb.toJson(results)
+        + ", \"StatusCode\": 200, \n \"StatusDescription\": \"Execution Successful\"}";
+
+        int returnCode = 0;
+        if (results.size() == 0) {
+            returnCode=1;
+        }
+        
+        logger.info("Appointment blob: " + appointmentBlob);
+
+        JsonReader jsonReader = Json.createReader(new StringReader(appointmentBlob));
             
         JsonObject jresponse  = jsonReader.readObject();
         jsonReader.close();
@@ -170,7 +203,7 @@ public class SummitResource {
                 .setParameter("pid", patId)
                 .getResultList();
         Jsonb jsonb = JsonbBuilder.create();
-        System.out.println("Found this many prescriptions with id " + patId + " = " + results.size());
+        logger.info("Found this many prescriptions with id " + patId + " = " + results.size());
         int returnCode = 0;
         if (results.size() == 0) {
             returnCode=1;
@@ -183,7 +216,7 @@ public class SummitResource {
         " \"CA_PATIENT_ID\": \"" + patId + "\"," + 
         " \"CA_LIST_MEDICATION_REQUEST\": { \"CA_MEDICATIONS\": " + jsonb.toJson(results) + "}}}";
 
-        System.out.println("Prescription blob: " + prescriptionBlob);
+        logger.info("Prescription blob: " + prescriptionBlob);
 
         JsonReader jsonReader = Json.createReader(new StringReader(prescriptionBlob));
             
@@ -219,7 +252,7 @@ public class SummitResource {
                 .setParameter("pid", patId)
                 .getResultList();
         Jsonb jsonb = JsonbBuilder.create();
-        System.out.println("Found this many observations with id " + patId + " = " + results.size());
+        logger.info("Found this many observations with id " + patId + " = " + results.size());
         int returnCode = 0;
         if (results.size() == 0) {
             returnCode=1;
@@ -244,7 +277,7 @@ public class SummitResource {
         String observationBlob = "{\"ResultSet Output\": " + jsonb.toJson(results)
         + ", \"StatusCode\": 200, \n \"StatusDescription\": \"Execution Successful\"}";
 
-        System.out.println("Observation blob: " + observationBlob);
+        logger.info("Observation blob: " + observationBlob);
 
         JsonReader jsonReader = Json.createReader(new StringReader(observationBlob));
             
@@ -284,7 +317,7 @@ public class SummitResource {
                 .setParameter("userId", c.UID)
                 .setParameter("password", c.PASS)
                 .getResultList();
-        System.out.println("Found this many patients: " + results.size());
+        logger.info("Found this many patients: " + results.size());
         int returnCode = 0;
         if (results.size() == 0) {
             returnCode=1;
@@ -306,7 +339,7 @@ public class SummitResource {
         String loginBlob = "{\"ResultSet Output\":" + jsonb.toJson(results) 
         + ", \"StatusCode\": 200, \n \"StatusDescription\": \"Execution Successful\"}";
 
-        System.out.println("login blob: " + loginBlob);
+        logger.info("login blob: " + loginBlob);
         JsonReader jsonReader = Json.createReader(new StringReader(loginBlob));
         JsonObject jresponse  = jsonReader.readObject();
         jsonReader.close();
@@ -322,14 +355,14 @@ public class SummitResource {
         SynthData synData = jsonb.fromJson(synthData, SynthData.class);
         int cnt=0;
 
-        System.out.println("Loading " + synData.patients.size() + " patient records.");
+        logger.info("Loading " + synData.patients.size() + " patient records.");
         for (Patient ptnt : synData.patients) {
             cnt++;
             String patientFirstName = ptnt.getFirstName().replaceAll("[0-9]", "");
             String patientLastName = ptnt.getLastName().replaceAll("[0-9]", "");
             ptnt.setFirstName(patientFirstName);
             ptnt.setLastName(patientLastName);
-            // System.out.println("First name: " + ptnt.getFirstName());
+            // logger.info("First name: " + ptnt.getFirstName());
             String patientCredential = ptnt.getFirstName().replaceAll("[0-9]", "").toLowerCase() + ptnt.getLastName().replaceAll("[0-9]", "").toLowerCase().charAt(0);
             ptnt.setPassword(patientCredential);
             ptnt.setUserId(patientCredential);
@@ -338,7 +371,7 @@ public class SummitResource {
         }
         cnt = 0;
 
-        System.out.println("Loading " + synData.providers.size() + " provider records.");
+        logger.info("Loading " + synData.providers.size() + " provider records.");
         for (Provider p : synData.providers) {
             cnt++;
             entityManager.persist(p);
@@ -346,7 +379,7 @@ public class SummitResource {
         }
         cnt = 0;
 
-        System.out.println("Loading " + synData.organizations.size() + " organization records.");
+        logger.info("Loading " + synData.organizations.size() + " organization records.");
         for (Organization o : synData.organizations) {
             cnt++;
             entityManager.persist(o);
@@ -354,7 +387,7 @@ public class SummitResource {
         }
         cnt=0;
 
-        System.out.println("Loading " + synData.allergies.size() + " allergy records.");
+        logger.info("Loading " + synData.allergies.size() + " allergy records.");
         for (Allergy a: synData.allergies) {
             cnt++;
             entityManager.persist(a);
@@ -362,7 +395,7 @@ public class SummitResource {
         }
         cnt=0;
 
-        System.out.println("Loading " + synData.medications.size() + " medication records.");
+        logger.info("Loading " + synData.medications.size() + " medication records.");
         for (Prescription p : synData.medications) {
             cnt++;
             String[] description = p.getDrugName().replaceAll("(NDA[0-9]+)|(\\.)","").split("[0-9]+");
@@ -372,7 +405,7 @@ public class SummitResource {
         }
         cnt=0;
 
-        System.out.println("Loading " + synData.encounters.size() + " encounter records.");
+        logger.info("Loading " + synData.encounters.size() + " encounter records.");
         for (Appointment a : synData.encounters) {
             cnt++;
             String datetime = a.getDate();
@@ -383,7 +416,7 @@ public class SummitResource {
         }
         cnt=0;
 
-        System.out.println("Loading " + synData.observations.size() + " observation records.");
+        logger.info("Loading " + synData.observations.size() + " observation records.");
         for (Observation o : synData.observations) {
             cnt++;
             if (o.type.equals("numeric")) {
@@ -413,7 +446,7 @@ public class SummitResource {
         String patientLastName = ptnt.getLastName().replaceAll("[0-9]", "");
         ptnt.setFirstName(patientFirstName);
         ptnt.setLastName(patientLastName);
-        System.out.println("First name: " + ptnt.getFirstName());
+        logger.info("First name: " + ptnt.getFirstName());
         String patientCredential = ptnt.getFirstName().replaceAll("[0-9]", "").toLowerCase() + ptnt.getLastName().replaceAll("[0-9]", "").toLowerCase().charAt(0);
         ptnt.setPassword(patientCredential);
         ptnt.setUserId(patientCredential);
@@ -422,7 +455,7 @@ public class SummitResource {
 
     private void flushBatch(int size, int cnt, String type) {
         if ( (cnt % batchSize == 0) || (size == cnt) )  {
-            System.out.println((size - cnt) + " " + type + " remaining.");
+            logger.info((size - cnt) + " " + type + " remaining.");
             entityManager.flush();
             entityManager.clear();
         }

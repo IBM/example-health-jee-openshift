@@ -35,21 +35,21 @@ JSON response format:
     private String OFF_STATE;    
     private String OFF_ZIP;
 
-    public AppointmentList(String pATIENTID, String fIRSTNAME, String lASTNAME, String aPPT_DATE, String aPPT_TIME,
-            String dR_NAME, String mED_FIELD, String oFF_NAME, String oFF_ADDR, String oFF_CITY, String oFF_STATE,
-            String oFF_ZIP) {
-        PATIENTID = pATIENTID;
-        FIRSTNAME = fIRSTNAME;
-        LASTNAME = lASTNAME;
-        APPT_DATE = aPPT_DATE;
-        APPT_TIME = aPPT_TIME;
-        DR_NAME = dR_NAME;
-        MED_FIELD = mED_FIELD;
-        OFF_NAME = oFF_NAME;
-        OFF_ADDR = oFF_ADDR;
-        OFF_CITY = oFF_CITY;
-        OFF_STATE = oFF_STATE;
-        OFF_ZIP = oFF_ZIP;
+    public AppointmentList(String patient_id, String first_name, String last_name, String date, String time,
+            String doc_name, String field, String office_name, String office_addr, String office_city, String office_state,
+            String office_zip) {
+        PATIENTID = patient_id;
+        FIRSTNAME = first_name;
+        LASTNAME = last_name;
+        APPT_DATE = date;
+        APPT_TIME = time;
+        DR_NAME = doc_name;
+        MED_FIELD = field;
+        OFF_NAME = office_name;
+        OFF_ADDR = office_addr;
+        OFF_CITY = office_city;
+        OFF_STATE = office_state;
+        OFF_ZIP = office_zip;
     }
 
     public String getPATIENTID() {
