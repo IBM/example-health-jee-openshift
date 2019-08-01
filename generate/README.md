@@ -2,7 +2,7 @@
 
 ## About
 
-This is a script that is used to populate Summit Health with realistic synthetic patient data. The bash script works by cloning [Synthea](https://github.com/synthetichealth/synthea), running Synthea to generate data, converting the Synthea data output to a JSON file, and sending the `apidata.json` JSON file to the Summit Health API's generate endpoint where it gets processed and stored in the database. The script batches together around 50 patients in `apidata.json` per API call.
+This is a script that is used to populate Example Health with realistic synthetic patient data. The bash script works by cloning [Synthea](https://github.com/synthetichealth/synthea), running Synthea to generate data, converting the Synthea data output to a JSON file, and sending the `apidata.json` JSON file to the Example Health API's generate endpoint where it gets processed and stored in the database. The script batches together around 50 patients in `apidata.json` per API call.
 
 ## Prerequisites
 
@@ -25,4 +25,4 @@ npm install
 * p
     * The population of the generated Synthea data. If flag is not used, defaults to 150.
 * u
-    * **REQUIRED**: The Summit Health API's base url.
+    * **REQUIRED**: The Example Health API's base url.

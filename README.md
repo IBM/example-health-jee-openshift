@@ -19,9 +19,9 @@ Since moving to Openshift, Example Health has expanded to include new microservi
 
 1. [Creating a Health Data Analytics App](https://developer.ibm.com/patterns/creating-a-health-data-analytics-app-with-legacy-mainframe-code-and-cloud/)
 
-2. Source to image pattern location TBD * note * add URL when published (Anton) 
+2. [Application modernization with the Source-to-Image toolkit and OpenShift](https://github.com/IBM/node-s2i-openshift) 
  
-3. [PHP Admin Front-end](https://github.com/IBM/summit-health-admin) * add URL when published * (Max)
+3. [PHP Admin Front-end](https://github.com/IBM/summit-health-admin)
 
 
 # Architecture
