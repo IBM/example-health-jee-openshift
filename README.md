@@ -56,7 +56,7 @@ Since moving to Openshift, Example Health has expanded to include new microservi
     git clone https://github.com/IBM/example-health-jee-openshift.git
 	```
 
-6. Create the database and tables using a MySQL client. Import the SQL schema for the the [Synthea](https://github.com/synthetichealth/synthea) simulated patient record data using the SQL file at: `samples/health_schema.sql`.
+6. Create the database and tables using a MySQL client. Import the SQL schema for the the [Synthea](https://github.com/synthetichealth/synthea) simulated patient record data using the SQL file at: `example-health-api/samples/health_schema.sql`.
 
 7. Build the Java EE application.
     ```
@@ -85,7 +85,7 @@ Since moving to Openshift, Example Health has expanded to include new microservi
 	
 11. Edit the file `example-health-api/kubernetes-openshift.yaml` to change the `image` key to your docker image.
 
-12. Set the secret values for your MySQL cloud deployment in the `create-secrets.sh` script. All the necesssary values can be found in the IBM Cloud MySQL service credentials page:
+12. Set the secret values for your MySQL cloud deployment in the `example-health-api/create-secrets.sh` script. All the necesssary values can be found in the IBM Cloud MySQL service credentials page:
 
 ![memory](screenshots/mysql.png)
 
