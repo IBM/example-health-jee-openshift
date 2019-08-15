@@ -89,7 +89,7 @@ Since moving to Openshift, Example Health has expanded to include new microservi
 
 ![memory](screenshots/mysql.png)
 
-> NOTE: The connection URL would resemble the following. Substitue the server name and port from the Cloud service page above. The value of `DB_NAME` use the database created and populated with the tables in step 6 above.
+> NOTE: The connection URL would resemble the following. Substitute the server name and port from the Cloud service page above. The value of `DB_NAME` use the database created and populated with the tables in step 6 above.
 ```
     --from-literal=db_host="jdbc:mysql://$HOST:$PORT/$DB_NAME?sessionVariables=sql_mode=''"
 ```
@@ -224,7 +224,7 @@ processing allowed memory to be reclaimed after entites were pushed to MySQL.
 
 ## Update the gateway timeout settings to allow long running APIs.
 
-The default OpenShift timeout for the gateway is 30 seconds, too short for long running REST calls like the `generate` endpoint to load health data. It's neceessary to set the route timeout to a longer value for the route defined for the health API:
+The default OpenShift timeout for the gateway is 30 seconds, too short for long running REST calls like the `generate` endpoint to load health data. It's necessary to set the route timeout to a longer value for the route defined for the health API:
 
 ```
   #   oc annotate route example-api --overwrite haproxy.router.openshift.io/timeout=60m
@@ -234,7 +234,7 @@ The default OpenShift timeout for the gateway is 30 seconds, too short for long 
 # Setting up JPA for OpenLiberty
 
 We set up a Data Source to allow Open Liberty to manage our connections to the MySQL database via 
-the MySQL JDBC driver. Fo more details, see this Open Liberty guide: https://openliberty.io/guides/jpa-intro.html
+the MySQL JDBC driver. For more details, see this Open Liberty guide: https://openliberty.io/guides/jpa-intro.html
 
 The `persistence.xml` specifies the driver details that is injected as the default persistence context via 
 CDI:
