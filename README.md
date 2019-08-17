@@ -66,7 +66,7 @@ Since moving to Openshift, Example Health has expanded to include new microservi
 
 8. Build the Java EE docker image.
    ```
-   docker build -t ol-example-health:1
+   docker build -t ol-example-health:1 .
    ```
 
 9. Create a repository in your dockerhub account and push the Java EE docker image to it.  (Substitute your account name into the commands.)
