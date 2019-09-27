@@ -12,3 +12,6 @@ release.properties
 .project
 .settings/
 .nfs*
+
+.terraform
+*.tfstate.backup
