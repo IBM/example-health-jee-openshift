@@ -34,7 +34,7 @@ Since moving to Openshift, Example Health has expanded to include new microservi
 4. The MySQL database sends back the data to the Java EE application where it gets handled accordingly.
 5. The data gets configured into JSON format that gets returned to the API and User.
 
-# Steps
+# Steps to make
 
 1. Install the following prerequisite tools.
     * A Java 8 (or higher) JDK such as [OpenJDK](https://openjdk.java.net/install/index.html)
